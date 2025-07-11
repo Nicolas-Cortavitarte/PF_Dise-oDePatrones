@@ -14,6 +14,7 @@ import Modelo_Pedido.Producto;
 import Modelo_Pedido.ResumenPedido;
 import Modelo_pago.MetodoPago;
 import Modelo_pago.PagoEfectivo;
+import Modelo_pago.PagoTarjeta;
 
 public class Main {
 
@@ -35,13 +36,13 @@ public class Main {
         pedido.agregarProducto(p1, 1);
         pedido.agregarProducto(p2, 3);
 
-        ResumenPedido.mostrarResumen(pedido);
+        //ResumenPedido.mostrarResumen(pedido);
 
-        /*ConfirmarPedido confirmado = new ConfirmarPedido();
-        MetodoPago metodo = new PagoEfectivo();
+        ConfirmarPedido confirmado = new ConfirmarPedido();
+        MetodoPago metodo = new PagoTarjeta();
         confirmado.confirmarPedido(pedido, metodo);
         
-        AlertaStockStrategy estrategia = new AlertarPorCantidadMinima();
+        /*AlertaStockStrategy estrategia = new AlertarPorCantidadMinima();
         GestorInventario inventario = new GestorInventario(estrategia);
         
         Compras compras = new Compras("Ricardo Perez");
