@@ -1,5 +1,7 @@
 package Modelo_Facturacion;
 
+import Modelo_Pedido.Pedido;
+
 public interface Facturador {
-    void generarComprobante(String datosFactura);
+    void generarComprobante(Pedido pedido);
 }

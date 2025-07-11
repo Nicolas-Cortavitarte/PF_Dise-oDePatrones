@@ -1,5 +1,7 @@
 package Modelo_Facturacion;
 
+import Modelo_Pedido.Pedido;
+
 public class BoletaAdapter implements Facturador{
     
     private SistemaBoleta Boleta;
@@ -9,8 +11,8 @@ public class BoletaAdapter implements Facturador{
     }
     
     @Override
-    public void generarComprobante(String datosFactura) {
-        Boleta.emitirBoleta(datosFactura);
+    public void generarComprobante(Pedido pedido) {
+        Boleta.emitirBoleta(pedido);
     }
     
 }
