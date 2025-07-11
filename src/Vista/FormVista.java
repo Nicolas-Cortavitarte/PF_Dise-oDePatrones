@@ -28,6 +28,7 @@ public class FormVista extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -75,6 +76,21 @@ public class FormVista extends javax.swing.JFrame {
         lblDescuento = new javax.swing.JLabel();
         btnConfirmarPedido = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtResumenPedido = new javax.swing.JTextArea();
+        jPanel16 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        rbBoleta = new javax.swing.JRadioButton();
+        rbFactura = new javax.swing.JRadioButton();
+        jLabel14 = new javax.swing.JLabel();
+        txtRUC = new javax.swing.JTextField();
+        btnGenerarComprobante = new javax.swing.JButton();
+        jPanel17 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        txtComprobanteGenerado = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -274,15 +290,71 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pedidos", jPanel3);
 
+        jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel12.setText("Resumen del pedido:");
+        jLabel12.setAlignmentX(20.0F);
+        jLabel12.setAlignmentY(20.0F);
+        jPanel15.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
+
+        txtResumenPedido.setColumns(20);
+        txtResumenPedido.setRows(5);
+        jScrollPane5.setViewportView(txtResumenPedido);
+
+        jPanel15.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 440, 130));
+
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel13.setText("Tipo de comprobante:");
+        jPanel16.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, -1, -1));
+
+        buttonGroup2.add(rbBoleta);
+        rbBoleta.setText("Boleta");
+        jPanel16.add(rbBoleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, -1));
+
+        buttonGroup2.add(rbFactura);
+        rbFactura.setText("Factura");
+        jPanel16.add(rbFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, -1, -1));
+
+        jLabel14.setText("RUC:");
+        jPanel16.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
+        jPanel16.add(txtRUC, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 184, -1));
+
+        btnGenerarComprobante.setText("GENERAR COMPROBANTE");
+        jPanel16.add(btnGenerarComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 190, 40));
+
+        jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setText("Comprobante Generado");
+        jPanel17.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
+
+        txtComprobanteGenerado.setColumns(20);
+        txtComprobanteGenerado.setRows(5);
+        jScrollPane6.setViewportView(txtComprobanteGenerado);
+
+        jPanel17.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 770, 270));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Facturación", jPanel4);
@@ -371,11 +443,17 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnConfirmarPedido;
     private javax.swing.JButton btnCrearCliente;
+    private javax.swing.JButton btnGenerarComprobante;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbbCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -390,6 +468,9 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -402,20 +483,27 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDescuento;
     private javax.swing.JLabel lblTotalPedido;
+    private javax.swing.JRadioButton rbBoleta;
     private javax.swing.JRadioButton rbExclusivo;
+    private javax.swing.JRadioButton rbFactura;
     private javax.swing.JRadioButton rbNormal;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaPedidoActual;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTable tablaProductosDisponibles;
     private javax.swing.JTextField txtCantidadProducto;
+    private javax.swing.JTextArea txtComprobanteGenerado;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioProducto;
+    private javax.swing.JTextField txtRUC;
+    private javax.swing.JTextArea txtResumenPedido;
     private javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtUbicacionProducto;
     // End of variables declaration//GEN-END:variables
