@@ -466,6 +466,7 @@ public class FormVista extends javax.swing.JFrame {
         jLabel18.setText("RECIBO GENERADO");
         jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
 
+        txtReciboPago.setEditable(false);
         txtReciboPago.setColumns(20);
         txtReciboPago.setRows(5);
         jScrollPane8.setViewportView(txtReciboPago);
