@@ -212,7 +212,10 @@ public class FormVista extends javax.swing.JFrame {
         rbExclusivo.setText("Exclusivo");
         jPanel8.add(rbExclusivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
-        btnCrearCliente.setText("CREAR CLIENTE");
+        btnCrearCliente.setBackground(new java.awt.Color(51, 56, 121));
+        btnCrearCliente.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        btnCrearCliente.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearCliente.setText("Crear Cliente");
         jPanel8.add(btnCrearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 150, 50));
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 18, 400, 550));
@@ -264,8 +267,11 @@ public class FormVista extends javax.swing.JFrame {
         jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
         jPanel10.add(txtStockProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 200, -1));
 
-        btnAgregarProducto.setText("AGREGAR PRODUCTO");
-        jPanel10.add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 160, 40));
+        btnAgregarProducto.setBackground(new java.awt.Color(51, 56, 121));
+        btnAgregarProducto.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
+        btnAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
+        btnAgregarProducto.setText("Agregar Producto");
+        jPanel10.add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 160, 50));
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 6, 910, 149));
 
