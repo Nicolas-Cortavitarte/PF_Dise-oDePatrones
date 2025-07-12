@@ -5,6 +5,14 @@
 package Vista;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.metal.MetalTabbedPaneUI;
 
 /**
  *
@@ -17,16 +25,38 @@ public class FormVista extends javax.swing.JFrame {
      */
     public FormVista() {
         initComponents();
-        setLocationRelativeTo(null);
-        Color azulPersonalizado = Color.decode("#225688");
 
-jTabbedPane1.setBackgroundAt(0, azulPersonalizado); // Clientes
-jTabbedPane1.setBackgroundAt(1, azulPersonalizado); // Productos
-jTabbedPane1.setBackgroundAt(2, azulPersonalizado); // Pedidos
-jTabbedPane1.setBackgroundAt(3, azulPersonalizado); // Facturación
-jTabbedPane1.setBackgroundAt(4, azulPersonalizado); // Indicadores
-jTabbedPane1.setBackgroundAt(5, azulPersonalizado); // Alertas
-jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
+        jTabbedPane1.setBackground(new Color(34, 86, 136));
+        jTabbedPane1.setForeground(Color.WHITE);
+
+        // Efecto de pestaña activa con color distinto
+        jTabbedPane1.addChangeListener(e -> {
+            int selectedIndex = jTabbedPane1.getSelectedIndex();
+            for (int i = 0; i < jTabbedPane1.getTabCount(); i++) {
+                if (i == selectedIndex) {
+                    jTabbedPane1.setBackgroundAt(i, new Color(20, 60, 100));
+                } else {
+                    jTabbedPane1.setBackgroundAt(i, new Color(34, 86, 136));
+                }
+            }
+        });
+
+        // 🖱️ Efecto hover al pasar el mouse
+        jTabbedPane1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(java.awt.event.MouseEvent e) {
+                int hoverIndex = jTabbedPane1.indexAtLocation(e.getX(), e.getY());
+                for (int i = 0; i < jTabbedPane1.getTabCount(); i++) {
+                    if (i == hoverIndex) {
+                        jTabbedPane1.setBackgroundAt(i, new Color(106, 151, 193));
+                    } else if (i != jTabbedPane1.getSelectedIndex()) {
+                        jTabbedPane1.setBackgroundAt(i, new Color(34, 86, 136));
+                    }
+                }
+            }
+        });
+
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -113,32 +143,46 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
         jLabel20 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
         lblAlertaActual = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtHistorialAlertas = new javax.swing.JTextArea();
+        jLabel21 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         rbEfectivo = new javax.swing.JRadioButton();
         rbTarjeta = new javax.swing.JRadioButton();
         rbYape = new javax.swing.JRadioButton();
-        lblCodigoTarjeta = new javax.swing.JLabel();
-        txtCodigoTarjeta = new javax.swing.JTextField();
-        btnRealizarPago = new javax.swing.JButton();
         lblResultadoPago = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         txtReciboPago = new javax.swing.JTextArea();
+        btnRealizarPago = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jPanel23 = new javax.swing.JPanel();
+        jPanel24 = new javax.swing.JPanel();
+        lblCodigoTarjeta = new javax.swing.JLabel();
+        txtCodigoTarjeta = new javax.swing.JTextField();
+        jPanel25 = new javax.swing.JPanel();
+        jPanel26 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(249, 250, 251));
-        setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
-        setPreferredSize(new java.awt.Dimension(1000, 700));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTabbedPane1.setBackground(new java.awt.Color(34, 86, 136));
+        jTabbedPane1.setBorder(new javax.swing.border.MatteBorder(null));
         jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPane1.setOpaque(true);
 
@@ -342,7 +386,7 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Pedidos", jPanel3);
@@ -435,73 +479,109 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
 
         jTabbedPane1.addTab("Indicadores", jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBackground(new java.awt.Color(237, 236, 236));
 
-        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel18.setBackground(new java.awt.Color(237, 236, 236));
         jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblAlertaActual.setText("Stock bajo para: (Esto varia segun el producto mas bajo del stock)");
-        jPanel18.add(lblAlertaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 350, 25));
+        jPanel22.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel22.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
+        lblAlertaActual.setForeground(new java.awt.Color(0, 0, 0));
+        lblAlertaActual.setText("Stock bajo para: (Esto varia segun el producto mas bajo del stock)");
+
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exclamacion-de-diamante.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
+        jPanel22.setLayout(jPanel22Layout);
+        jPanel22Layout.setHorizontalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
+                .addContainerGap(36, Short.MAX_VALUE)
+                .addComponent(jLabel19)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblAlertaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
+        );
+        jPanel22Layout.setVerticalGroup(
+            jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel22Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel19)
+                    .addComponent(lblAlertaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(24, Short.MAX_VALUE))
+        );
+
+        jPanel18.add(jPanel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 490, 70));
+
+        jPanel21.setBackground(new java.awt.Color(237, 236, 236));
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Historial de alertas");
-        jPanel21.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 100, 30));
+        jPanel21.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 120, 30));
 
         txtHistorialAlertas.setEditable(false);
+        txtHistorialAlertas.setBackground(new java.awt.Color(255, 255, 255));
         txtHistorialAlertas.setColumns(20);
         txtHistorialAlertas.setRows(5);
         jScrollPane7.setViewportView(txtHistorialAlertas);
 
         jPanel21.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 710, 290));
 
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alerta.png"))); // NOI18N
+        jPanel21.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+        jLabel21.getAccessibleContext().setAccessibleName("");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17))
+                .addComponent(jPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, 950, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Alertas", jPanel6);
 
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBackground(new java.awt.Color(237, 236, 236));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setText("Método de pago:");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 46, -1, -1));
 
-        buttonGroup3.add(rbEfectivo);
-        rbEfectivo.setText("Efectivo");
-        jPanel7.add(rbEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 44, -1, -1));
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/billete-de-banco (2).png"))); // NOI18N
+        jPanel7.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 30, 40));
 
+        rbEfectivo.setBackground(new java.awt.Color(255, 255, 255));
+        buttonGroup3.add(rbEfectivo);
+        rbEfectivo.setText("efectivo");
+        rbEfectivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbEfectivoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(rbEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 70, -1));
+
+        rbTarjeta.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(rbTarjeta);
         rbTarjeta.setText("Tarjeta");
-        jPanel7.add(rbTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 44, -1, -1));
+        jPanel7.add(rbTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 
+        rbYape.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(rbYape);
         rbYape.setText("Yape");
-        jPanel7.add(rbYape, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 44, -1, -1));
-
-        lblCodigoTarjeta.setText("Código tarjeta:");
-        jPanel7.add(lblCodigoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 113, -1, -1));
-        jPanel7.add(txtCodigoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 113, 225, -1));
-
-        btnRealizarPago.setText("Realizar Pago");
-        jPanel7.add(btnRealizarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 132, 45));
+        jPanel7.add(rbYape, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, -1, -1));
 
         lblResultadoPago.setText("Resultado de pago: Esto cambia de acuerdo al tipo de pago ");
         jPanel7.add(lblResultadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 116, -1, -1));
@@ -516,47 +596,150 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
 
         jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 230, 674, 335));
 
+        btnRealizarPago.setBackground(new java.awt.Color(51, 56, 121));
+        btnRealizarPago.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnRealizarPago.setForeground(new java.awt.Color(255, 255, 255));
+        btnRealizarPago.setText("Realizar Pago");
+        btnRealizarPago.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnRealizarPago.setOpaque(true);
+        btnRealizarPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRealizarPagoActionPerformed(evt);
+            }
+        });
+        jPanel7.add(btnRealizarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 130, 60));
+
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta-bancaria.png"))); // NOI18N
+        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 30, 30, 40));
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/yape-removebg-preview (3).png"))); // NOI18N
+        jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
+
+        jPanel23.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
+        jPanel23.setLayout(jPanel23Layout);
+        jPanel23Layout.setHorizontalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 550, Short.MAX_VALUE)
+        );
+        jPanel23Layout.setVerticalGroup(
+            jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 80, Short.MAX_VALUE)
+        );
+
+        jPanel7.add(jPanel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 550, 80));
+
+        jPanel24.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblCodigoTarjeta.setText("Código tarjeta:");
+
+        txtCodigoTarjeta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCodigoTarjetaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
+        jPanel24.setLayout(jPanel24Layout);
+        jPanel24Layout.setHorizontalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(lblCodigoTarjeta)
+                .addGap(96, 96, 96)
+                .addComponent(txtCodigoTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+        jPanel24Layout.setVerticalGroup(
+            jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel24Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCodigoTarjeta)
+                    .addComponent(txtCodigoTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
+
+        jPanel7.add(jPanel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 550, 50));
+
+        javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
+        jPanel25.setLayout(jPanel25Layout);
+        jPanel25Layout.setHorizontalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel25Layout.setVerticalGroup(
+            jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel7.add(jPanel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+
+        jPanel26.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
+        jPanel26.setLayout(jPanel26Layout);
+        jPanel26Layout.setHorizontalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 880, Short.MAX_VALUE)
+        );
+        jPanel26Layout.setVerticalGroup(
+            jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
+
+        jPanel7.add(jPanel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 880, 410));
+
         jTabbedPane1.addTab("Pagos", jPanel7);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 950, 620));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 14, 950, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        jTabbedPane1.setUI(new javax.swing.plaf.basic.BasicTabbedPaneUI());
+        jTabbedPane1.setBackground(new java.awt.Color(34, 86, 136));
+        jTabbedPane1.setForeground(java.awt.Color.WHITE);
+    }//GEN-LAST:event_formWindowOpened
+
+    private void btnRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarPagoActionPerformed
+
+    }//GEN-LAST:event_btnRealizarPagoActionPerformed
+
+    private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbEfectivoActionPerformed
+
+    private void txtCodigoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoTarjetaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCodigoTarjetaActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        /* Forzar un Look & Feel básico para evitar bordes blancos */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormVista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FormVista().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            FormVista vista = new FormVista();
+
+            // Cambiar colores de la barra y pestañas
+            vista.jTabbedPane1.setUI(new MetalTabbedPaneUI());
+            vista.jTabbedPane1.setBackground(new Color(34, 86, 136));
+            vista.jTabbedPane1.setForeground(Color.WHITE);
+            vista.jTabbedPane1.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+            vista.setVisible(true);
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPedido;
@@ -579,8 +762,13 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -602,6 +790,11 @@ jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel20;
     private javax.swing.JPanel jPanel21;
+    private javax.swing.JPanel jPanel22;
+    private javax.swing.JPanel jPanel23;
+    private javax.swing.JPanel jPanel24;
+    private javax.swing.JPanel jPanel25;
+    private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
