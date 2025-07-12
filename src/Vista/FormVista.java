@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author Nicolas
@@ -16,6 +18,15 @@ public class FormVista extends javax.swing.JFrame {
     public FormVista() {
         initComponents();
         setLocationRelativeTo(null);
+        Color azulPersonalizado = Color.decode("#225688");
+
+jTabbedPane1.setBackgroundAt(0, azulPersonalizado); // Clientes
+jTabbedPane1.setBackgroundAt(1, azulPersonalizado); // Productos
+jTabbedPane1.setBackgroundAt(2, azulPersonalizado); // Pedidos
+jTabbedPane1.setBackgroundAt(3, azulPersonalizado); // Facturación
+jTabbedPane1.setBackgroundAt(4, azulPersonalizado); // Indicadores
+jTabbedPane1.setBackgroundAt(5, azulPersonalizado); // Alertas
+jTabbedPane1.setBackgroundAt(6, azulPersonalizado); // Pagos
     }
 
     /**
@@ -127,8 +138,15 @@ public class FormVista extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1000, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jTabbedPane1.setBackground(new java.awt.Color(34, 86, 136));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
+        jTabbedPane1.setOpaque(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Nombre:");
@@ -155,6 +173,7 @@ public class FormVista extends javax.swing.JFrame {
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 18, 400, 550));
 
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
         jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
@@ -177,8 +196,10 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Clientes", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setAlignmentX(10.0F);
         jPanel10.setAlignmentY(10.0F);
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -204,6 +225,7 @@ public class FormVista extends javax.swing.JFrame {
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 6, 910, 149));
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -226,6 +248,9 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Productos", jPanel2);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
         jPanel12.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel8.setText("CLIENTE:");
@@ -234,6 +259,7 @@ public class FormVista extends javax.swing.JFrame {
         cbbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel12.add(cbbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, 40));
 
+        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setText("Productos Disponibles:");
@@ -262,6 +288,7 @@ public class FormVista extends javax.swing.JFrame {
         btnAgregarPedido.setText("AGREGAR AL PEDIDO");
         jPanel13.add(btnAgregarPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, -1, -1));
 
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setText("Pedido Actual:");
@@ -320,8 +347,10 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pedidos", jPanel3);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setText("Resumen del pedido:");
@@ -338,6 +367,7 @@ public class FormVista extends javax.swing.JFrame {
 
         jPanel4.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 6, 940, 152));
 
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel13.setText("Tipo de comprobante:");
@@ -360,6 +390,7 @@ public class FormVista extends javax.swing.JFrame {
 
         jPanel4.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 950, 94));
 
+        jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setText("Comprobante Generado");
@@ -376,8 +407,10 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Facturación", jPanel4);
 
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel19.setBackground(new java.awt.Color(255, 255, 255));
         jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblTotalPedidos.setText("Total de pedido: 0 ");
@@ -402,11 +435,15 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Indicadores", jPanel5);
 
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel18.setBackground(new java.awt.Color(255, 255, 255));
         jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblAlertaActual.setText("Stock bajo para: (Esto varia segun el producto mas bajo del stock)");
         jPanel18.add(lblAlertaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 350, 25));
 
+        jPanel21.setBackground(new java.awt.Color(255, 255, 255));
         jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel16.setText("Historial de alertas");
@@ -441,6 +478,7 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Alertas", jPanel6);
 
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel17.setText("Método de pago:");
