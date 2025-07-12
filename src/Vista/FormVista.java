@@ -121,6 +121,7 @@ public class FormVista extends javax.swing.JFrame {
         txtReciboPago = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(249, 250, 251));
         setMaximumSize(new java.awt.Dimension(1000, 700));
         setMinimumSize(new java.awt.Dimension(1000, 700));
         setPreferredSize(new java.awt.Dimension(1000, 700));
@@ -167,6 +168,7 @@ public class FormVista extends javax.swing.JFrame {
                 "Nombre", "Correo", "Tipo"
             }
         ));
+        tablaClientes.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tablaClientes);
 
         jPanel9.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 17, 470, 510));
@@ -215,6 +217,7 @@ public class FormVista extends javax.swing.JFrame {
                 "Nombre", "Precio", "Stock", "Ubicación"
             }
         ));
+        tablaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaProductos);
 
         jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 870, 370));
@@ -247,6 +250,7 @@ public class FormVista extends javax.swing.JFrame {
                 "Nombre", "Precio", "Stock:"
             }
         ));
+        tablaProductosDisponibles.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(tablaProductosDisponibles);
 
         jPanel13.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 320, 300));
@@ -274,6 +278,7 @@ public class FormVista extends javax.swing.JFrame {
                 "Producto", "Cantidad", "Subtotal"
             }
         ));
+        tablaPedidoActual.getTableHeader().setReorderingAllowed(false);
         jScrollPane4.setViewportView(tablaPedidoActual);
 
         jPanel14.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 320, 300));
