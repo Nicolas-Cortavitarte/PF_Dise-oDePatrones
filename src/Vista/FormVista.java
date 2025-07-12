@@ -29,6 +29,7 @@ public class FormVista extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
@@ -92,8 +93,32 @@ public class FormVista extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         txtComprobanteGenerado = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
+        lblTotalPedidos = new javax.swing.JLabel();
+        lblProductoMasVendido = new javax.swing.JLabel();
+        lblTotalNormal = new javax.swing.JLabel();
+        lblTotalExclusivo = new javax.swing.JLabel();
+        jPanel20 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
+        jPanel18 = new javax.swing.JPanel();
+        lblAlertaActual = new javax.swing.JLabel();
+        jPanel21 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtHistorialAlertas = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        rbEfectivo = new javax.swing.JRadioButton();
+        rbTarjeta = new javax.swing.JRadioButton();
+        rbYape = new javax.swing.JRadioButton();
+        lblCodigoTarjeta = new javax.swing.JLabel();
+        txtCodigoTarjeta = new javax.swing.JTextField();
+        btnRealizarPago = new javax.swing.JButton();
+        lblResultadoPago = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        txtReciboPago = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1000, 700));
@@ -290,6 +315,8 @@ public class FormVista extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pedidos", jPanel3);
 
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jPanel15.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel12.setText("Resumen del pedido:");
@@ -297,11 +324,14 @@ public class FormVista extends javax.swing.JFrame {
         jLabel12.setAlignmentY(20.0F);
         jPanel15.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, -1, -1));
 
+        txtResumenPedido.setEditable(false);
         txtResumenPedido.setColumns(20);
         txtResumenPedido.setRows(5);
         jScrollPane5.setViewportView(txtResumenPedido);
 
         jPanel15.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 440, 130));
+
+        jPanel4.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 6, 940, 152));
 
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -323,78 +353,124 @@ public class FormVista extends javax.swing.JFrame {
         btnGenerarComprobante.setText("GENERAR COMPROBANTE");
         jPanel16.add(btnGenerarComprobante, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 30, 190, 40));
 
+        jPanel4.add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, 950, 94));
+
         jPanel17.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel15.setText("Comprobante Generado");
         jPanel17.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, -1, -1));
 
+        txtComprobanteGenerado.setEditable(false);
         txtComprobanteGenerado.setColumns(20);
         txtComprobanteGenerado.setRows(5);
         jScrollPane6.setViewportView(txtComprobanteGenerado);
 
         jPanel17.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 770, 270));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-            .addComponent(jPanel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel17, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jPanel4.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 270, 938, 319));
 
         jTabbedPane1.addTab("Facturación", jPanel4);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel19.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTotalPedidos.setText("Total de pedido: 0 ");
+        jPanel19.add(lblTotalPedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, -1));
+
+        lblProductoMasVendido.setText("Producto más pedido: Producto");
+        jPanel19.add(lblProductoMasVendido, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 50, -1, -1));
+
+        lblTotalNormal.setText("Total vendido (clientes normales): S/ 0.00");
+        jPanel19.add(lblTotalNormal, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, -1, -1));
+
+        lblTotalExclusivo.setText("Total vendido (clientes exclusivos): S/ 0.00");
+        jPanel19.add(lblTotalExclusivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 110, -1, -1));
+
+        jPanel5.add(jPanel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 19, 917, 149));
+
+        jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 228, 917, 339));
+
+        jLabel20.setText("Grafico: (AHI DECIA OPCIONAL) ");
+        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         jTabbedPane1.addTab("Indicadores", jPanel5);
+
+        jPanel18.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblAlertaActual.setText("Stock bajo para: (Esto varia segun el producto mas bajo del stock)");
+        jPanel18.add(lblAlertaActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 350, 25));
+
+        jPanel21.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel16.setText("Historial de alertas");
+        jPanel21.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 10, 100, 30));
+
+        txtHistorialAlertas.setEditable(false);
+        txtHistorialAlertas.setColumns(20);
+        txtHistorialAlertas.setRows(5);
+        jScrollPane7.setViewportView(txtHistorialAlertas);
+
+        jPanel21.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 710, 290));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 927, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 916, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel21, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jTabbedPane1.addTab("Alertas", jPanel6);
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 950, Short.MAX_VALUE)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel17.setText("Método de pago:");
+        jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 46, -1, -1));
+
+        buttonGroup3.add(rbEfectivo);
+        rbEfectivo.setText("Efectivo");
+        jPanel7.add(rbEfectivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(238, 44, -1, -1));
+
+        buttonGroup3.add(rbTarjeta);
+        rbTarjeta.setText("Tarjeta");
+        jPanel7.add(rbTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 44, -1, -1));
+
+        buttonGroup3.add(rbYape);
+        rbYape.setText("Yape");
+        jPanel7.add(rbYape, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 44, -1, -1));
+
+        lblCodigoTarjeta.setText("Código tarjeta:");
+        jPanel7.add(lblCodigoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 113, -1, -1));
+        jPanel7.add(txtCodigoTarjeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(212, 113, 225, -1));
+
+        btnRealizarPago.setText("Realizar Pago");
+        jPanel7.add(btnRealizarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 132, 45));
+
+        lblResultadoPago.setText("Resultado de pago: Esto cambia de acuerdo al tipo de pago ");
+        jPanel7.add(lblResultadoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(603, 116, -1, -1));
+
+        jLabel18.setText("RECIBO GENERADO");
+        jPanel7.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 180, -1, -1));
+
+        txtReciboPago.setColumns(20);
+        txtReciboPago.setRows(5);
+        jScrollPane8.setViewportView(txtReciboPago);
+
+        jPanel7.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 230, 674, 335));
 
         jTabbedPane1.addTab("Pagos", jPanel7);
 
@@ -444,8 +520,10 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmarPedido;
     private javax.swing.JButton btnCrearCliente;
     private javax.swing.JButton btnGenerarComprobante;
+    private javax.swing.JButton btnRealizarPago;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.JComboBox<String> cbbCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -454,7 +532,11 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -471,7 +553,11 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel20;
+    private javax.swing.JPanel jPanel21;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
@@ -485,24 +571,39 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblAlertaActual;
+    private javax.swing.JLabel lblCodigoTarjeta;
     private javax.swing.JLabel lblDescuento;
+    private javax.swing.JLabel lblProductoMasVendido;
+    private javax.swing.JLabel lblResultadoPago;
+    private javax.swing.JLabel lblTotalExclusivo;
+    private javax.swing.JLabel lblTotalNormal;
     private javax.swing.JLabel lblTotalPedido;
+    private javax.swing.JLabel lblTotalPedidos;
     private javax.swing.JRadioButton rbBoleta;
+    private javax.swing.JRadioButton rbEfectivo;
     private javax.swing.JRadioButton rbExclusivo;
     private javax.swing.JRadioButton rbFactura;
     private javax.swing.JRadioButton rbNormal;
+    private javax.swing.JRadioButton rbTarjeta;
+    private javax.swing.JRadioButton rbYape;
     private javax.swing.JTable tablaClientes;
     private javax.swing.JTable tablaPedidoActual;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTable tablaProductosDisponibles;
     private javax.swing.JTextField txtCantidadProducto;
+    private javax.swing.JTextField txtCodigoTarjeta;
     private javax.swing.JTextArea txtComprobanteGenerado;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextArea txtHistorialAlertas;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtPrecioProducto;
     private javax.swing.JTextField txtRUC;
+    private javax.swing.JTextArea txtReciboPago;
     private javax.swing.JTextArea txtResumenPedido;
     private javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtUbicacionProducto;
