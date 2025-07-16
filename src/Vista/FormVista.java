@@ -4,15 +4,20 @@
  */
 package Vista;
 
+import Modelo_Cliente.Cliente;
+import Modelo_Cliente.ClienteExclusivo;
+import Modelo_Cliente.ClienteNormal;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -216,6 +221,11 @@ public class FormVista extends javax.swing.JFrame {
         btnCrearCliente.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnCrearCliente.setForeground(new java.awt.Color(255, 255, 255));
         btnCrearCliente.setText("Crear Cliente");
+        btnCrearCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearClienteActionPerformed(evt);
+            }
+        });
         jPanel8.add(btnCrearCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 150, 50));
 
         jPanel1.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 18, 400, 550));
@@ -225,10 +235,7 @@ public class FormVista extends javax.swing.JFrame {
 
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Correo", "Tipo"
@@ -721,6 +728,28 @@ public class FormVista extends javax.swing.JFrame {
     private void txtCodigoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoTarjetaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoTarjetaActionPerformed
+
+    private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
+        // TODO add your handling code here:
+        String nombre = txtNombre.getText();
+        String correo = txtCorreo.getText();
+        String tipo = rbExclusivo.isSelected() ? "Exclusivo" : "Normal";
+
+        if (nombre.isEmpty() || correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, completa los campos.");
+            return;
+        }
+
+        Cliente cliente;
+        if (tipo.equals("Exclusivo")) {
+            cliente = new ClienteExclusivo(nombre, correo);
+        } else {
+            cliente = new ClienteNormal(nombre, correo);
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
+        model.addRow(new Object[]{nombre, correo, tipo});
+    }//GEN-LAST:event_btnCrearClienteActionPerformed
 
     /**
      * @param args the command line arguments
