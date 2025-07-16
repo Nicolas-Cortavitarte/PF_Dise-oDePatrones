@@ -12,8 +12,15 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
@@ -150,15 +157,12 @@ public class FormVista extends javax.swing.JFrame {
         jPanel18 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
         lblAlertaActual = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtHistorialAlertas = new javax.swing.JTextArea();
-        jLabel21 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
         rbEfectivo = new javax.swing.JRadioButton();
         rbTarjeta = new javax.swing.JRadioButton();
         rbYape = new javax.swing.JRadioButton();
@@ -167,8 +171,6 @@ public class FormVista extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         txtReciboPago = new javax.swing.JTextArea();
         btnRealizarPago = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
         jPanel23 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         lblCodigoTarjeta = new javax.swing.JLabel();
@@ -287,10 +289,7 @@ public class FormVista extends javax.swing.JFrame {
 
         tablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nombre", "Precio", "Stock", "Ubicación"
@@ -313,7 +312,6 @@ public class FormVista extends javax.swing.JFrame {
         jLabel8.setText("CLIENTE:");
         jPanel12.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 20, -1, -1));
 
-        cbbCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel12.add(cbbCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 100, 40));
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
@@ -324,10 +322,7 @@ public class FormVista extends javax.swing.JFrame {
 
         tablaProductosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Nombre", "Precio", "Stock:"
@@ -353,10 +348,7 @@ public class FormVista extends javax.swing.JFrame {
 
         tablaPedidoActual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Producto", "Cantidad", "Subtotal"
@@ -503,16 +495,12 @@ public class FormVista extends javax.swing.JFrame {
         lblAlertaActual.setForeground(new java.awt.Color(0, 0, 0));
         lblAlertaActual.setText("Stock bajo para: (Esto varia segun el producto mas bajo del stock)");
 
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/exclamacion-de-diamante.png"))); // NOI18N
-
         javax.swing.GroupLayout jPanel22Layout = new javax.swing.GroupLayout(jPanel22);
         jPanel22.setLayout(jPanel22Layout);
         jPanel22Layout.setHorizontalGroup(
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel22Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
-                .addComponent(jLabel19)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap(72, Short.MAX_VALUE)
                 .addComponent(lblAlertaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24))
         );
@@ -520,9 +508,7 @@ public class FormVista extends javax.swing.JFrame {
             jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel22Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(jPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel19)
-                    .addComponent(lblAlertaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblAlertaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
@@ -542,10 +528,6 @@ public class FormVista extends javax.swing.JFrame {
         jScrollPane7.setViewportView(txtHistorialAlertas);
 
         jPanel21.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, 710, 290));
-
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alerta.png"))); // NOI18N
-        jPanel21.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
-        jLabel21.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -572,9 +554,6 @@ public class FormVista extends javax.swing.JFrame {
 
         jLabel17.setText("Método de pago:");
         jPanel7.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 46, -1, -1));
-
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/billete-de-banco (2).png"))); // NOI18N
-        jPanel7.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 30, 30, 40));
 
         rbEfectivo.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup3.add(rbEfectivo);
@@ -621,12 +600,6 @@ public class FormVista extends javax.swing.JFrame {
             }
         });
         jPanel7.add(btnRealizarPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 30, 130, 60));
-
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tarjeta-bancaria.png"))); // NOI18N
-        jPanel7.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(414, 30, 30, 40));
-
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/yape-removebg-preview (3).png"))); // NOI18N
-        jPanel7.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 30, -1, -1));
 
         jPanel23.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -730,25 +703,7 @@ public class FormVista extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoTarjetaActionPerformed
 
     private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
-        // TODO add your handling code here:
-        String nombre = txtNombre.getText();
-        String correo = txtCorreo.getText();
-        String tipo = rbExclusivo.isSelected() ? "Exclusivo" : "Normal";
 
-        if (nombre.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, completa los campos.");
-            return;
-        }
-
-        Cliente cliente;
-        if (tipo.equals("Exclusivo")) {
-            cliente = new ClienteExclusivo(nombre, correo);
-        } else {
-            cliente = new ClienteNormal(nombre, correo);
-        }
-
-        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
-        model.addRow(new Object[]{nombre, correo, tipo});
     }//GEN-LAST:event_btnCrearClienteActionPerformed
 
     /**
@@ -775,6 +730,169 @@ public class FormVista extends javax.swing.JFrame {
         });
     }
 
+    public JButton getBtnAgregarPedido() {
+        return btnAgregarPedido;
+    }
+
+    public JButton getBtnAgregarProducto() {
+        return btnAgregarProducto;
+    }
+
+    public JButton getBtnConfirmarPedido() {
+        return btnConfirmarPedido;
+    }
+
+    public JButton getBtnCrearCliente() {
+        return btnCrearCliente;
+    }
+
+    public JButton getBtnGenerarComprobante() {
+        return btnGenerarComprobante;
+    }
+
+    public JButton getBtnRealizarPago() {
+        return btnRealizarPago;
+    }
+
+    public JComboBox<String> getCbbCliente() {
+        return cbbCliente;
+    }
+
+    public JLabel getLblAlertaActual() {
+        return lblAlertaActual;
+    }
+
+    public JLabel getLblCodigoTarjeta() {
+        return lblCodigoTarjeta;
+    }
+
+    public JLabel getLblDescuento() {
+        return lblDescuento;
+    }
+
+    public JLabel getLblResultadoPago() {
+        return lblResultadoPago;
+    }
+
+    public JLabel getLblTotalExclusivo() {
+        return lblTotalExclusivo;
+    }
+
+    public JLabel getLblTotalNormal() {
+        return lblTotalNormal;
+    }
+
+    public JLabel getLblTotalPedido() {
+        return lblTotalPedido;
+    }
+
+    public JRadioButton getRbBoleta() {
+        return rbBoleta;
+    }
+
+    public JRadioButton getRbEfectivo() {
+        return rbEfectivo;
+    }
+
+    public JRadioButton getRbExclusivo() {
+        return rbExclusivo;
+    }
+
+    public JRadioButton getRbFactura() {
+        return rbFactura;
+    }
+
+    public JRadioButton getRbNormal() {
+        return rbNormal;
+    }
+
+    public JRadioButton getRbTarjeta() {
+        return rbTarjeta;
+    }
+
+    public JRadioButton getRbYape() {
+        return rbYape;
+    }
+
+    public JTable getTablaClientes() {
+        return tablaClientes;
+    }
+
+    public JTable getTablaPedidoActual() {
+        return tablaPedidoActual;
+    }
+
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
+
+    public JTable getTablaProductosDisponibles() {
+        return tablaProductosDisponibles;
+    }
+
+    public JTextField getTxtCantidadProducto() {
+        return txtCantidadProducto;
+    }
+
+    public JTextField getTxtCodigoTarjeta() {
+        return txtCodigoTarjeta;
+    }
+
+    public JTextArea getTxtComprobanteGenerado() {
+        return txtComprobanteGenerado;
+    }
+
+    public JTextField getTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public JTextArea getTxtHistorialAlertas() {
+        return txtHistorialAlertas;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public JTextField getTxtNombreProducto() {
+        return txtNombreProducto;
+    }
+
+    public JTextField getTxtPrecioProducto() {
+        return txtPrecioProducto;
+    }
+
+    public JTextField getTxtRUC() {
+        return txtRUC;
+    }
+
+    public JTextArea getTxtReciboPago() {
+        return txtReciboPago;
+    }
+
+    public JTextArea getTxtResumenPedido() {
+        return txtResumenPedido;
+    }
+
+    public JTextField getTxtStockProducto() {
+        return txtStockProducto;
+    }
+
+    public JTextField getTxtUbicacionProducto() {
+        return txtUbicacionProducto;
+    }
+
+    public ButtonGroup getButtonGroup1() {
+        return buttonGroup1;
+    }
+
+    public ButtonGroup getButtonGroup2() {
+        return buttonGroup2;
+    }
+
+    public ButtonGroup getButtonGroup3() {
+        return buttonGroup3;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarPedido;
@@ -797,13 +915,8 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
