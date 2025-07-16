@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -108,6 +109,8 @@ public class FormVista extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtStockProducto = new javax.swing.JTextField();
         btnAgregarProducto = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        txtStockMinimoProducto = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaProductos = new javax.swing.JTable();
@@ -117,14 +120,14 @@ public class FormVista extends javax.swing.JFrame {
         cbbCliente = new javax.swing.JComboBox<>();
         jPanel13 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        tblTabla = new javax.swing.JScrollPane();
         tablaProductosDisponibles = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         txtCantidadProducto = new javax.swing.JTextField();
         btnAgregarPedido = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        ScrollPedidoActual = new javax.swing.JScrollPane();
         tablaPedidoActual = new javax.swing.JTable();
         lblTotalPedido = new javax.swing.JLabel();
         lblDescuento = new javax.swing.JLabel();
@@ -272,15 +275,19 @@ public class FormVista extends javax.swing.JFrame {
         jPanel10.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 30, -1, -1));
         jPanel10.add(txtUbicacionProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 30, 200, -1));
 
-        jLabel7.setText("Stock Inicial:");
-        jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 90, -1, -1));
-        jPanel10.add(txtStockProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 90, 200, -1));
+        jLabel7.setText("Stock Minimo:");
+        jPanel10.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 120, -1, -1));
+        jPanel10.add(txtStockProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 200, -1));
 
         btnAgregarProducto.setBackground(new java.awt.Color(51, 56, 121));
         btnAgregarProducto.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         btnAgregarProducto.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarProducto.setText("Agregar Producto");
         jPanel10.add(btnAgregarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 160, 50));
+
+        jLabel19.setText("Stock Inicial:");
+        jPanel10.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, -1, -1));
+        jPanel10.add(txtStockMinimoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 200, -1));
 
         jPanel2.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 6, 910, 149));
 
@@ -298,7 +305,7 @@ public class FormVista extends javax.swing.JFrame {
         tablaProductos.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tablaProductos);
 
-        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 870, 370));
+        jPanel11.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 870, 350));
 
         jPanel2.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 167, 910, 410));
 
@@ -329,9 +336,9 @@ public class FormVista extends javax.swing.JFrame {
             }
         ));
         tablaProductosDisponibles.getTableHeader().setReorderingAllowed(false);
-        jScrollPane3.setViewportView(tablaProductosDisponibles);
+        tblTabla.setViewportView(tablaProductosDisponibles);
 
-        jPanel13.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 320, 300));
+        jPanel13.add(tblTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 320, 300));
 
         jLabel10.setText("Cantidad:");
         jPanel13.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
@@ -355,9 +362,9 @@ public class FormVista extends javax.swing.JFrame {
             }
         ));
         tablaPedidoActual.getTableHeader().setReorderingAllowed(false);
-        jScrollPane4.setViewportView(tablaPedidoActual);
+        ScrollPedidoActual.setViewportView(tablaPedidoActual);
 
-        jPanel14.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 320, 300));
+        jPanel14.add(ScrollPedidoActual, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 320, 300));
 
         lblTotalPedido.setText("Total: S/  0.00");
         jPanel14.add(lblTotalPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, -1, -1));
@@ -882,6 +889,10 @@ public class FormVista extends javax.swing.JFrame {
         return txtUbicacionProducto;
     }
 
+    public JTextField getTxtStockMinimoProducto() {
+        return txtStockMinimoProducto;
+    }
+
     public ButtonGroup getButtonGroup1() {
         return buttonGroup1;
     }
@@ -890,11 +901,20 @@ public class FormVista extends javax.swing.JFrame {
         return buttonGroup2;
     }
 
+    public JScrollPane getScrollPedidoActual() {
+        return ScrollPedidoActual;
+    }
+
+    public JScrollPane getTblTabla() {
+        return tblTabla;
+    }
+
     public ButtonGroup getButtonGroup3() {
         return buttonGroup3;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane ScrollPedidoActual;
     private javax.swing.JButton btnAgregarPedido;
     private javax.swing.JButton btnAgregarProducto;
     private javax.swing.JButton btnConfirmarPedido;
@@ -915,6 +935,7 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
@@ -952,8 +973,6 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -979,6 +998,7 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JTable tablaPedidoActual;
     private javax.swing.JTable tablaProductos;
     private javax.swing.JTable tablaProductosDisponibles;
+    private javax.swing.JScrollPane tblTabla;
     private javax.swing.JTextField txtCantidadProducto;
     private javax.swing.JTextField txtCodigoTarjeta;
     private javax.swing.JTextArea txtComprobanteGenerado;
@@ -990,6 +1010,7 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JTextField txtRUC;
     private javax.swing.JTextArea txtReciboPago;
     private javax.swing.JTextArea txtResumenPedido;
+    private javax.swing.JTextField txtStockMinimoProducto;
     private javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtUbicacionProducto;
     // End of variables declaration//GEN-END:variables
