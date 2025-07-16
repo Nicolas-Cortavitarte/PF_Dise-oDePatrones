@@ -719,7 +719,7 @@ public class FormVista extends javax.swing.JFrame {
 
     private void btnRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarPagoActionPerformed
         if (pedidoActual == null) {
-            javax.swing.JOptionPane.showMessageDialog(this, "No hay pedido para realizar pago.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No hay pedido para realizar pago.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         Modelo_pago.MetodoPago metodoPago = obtenerMetodoPagoSeleccionado();
