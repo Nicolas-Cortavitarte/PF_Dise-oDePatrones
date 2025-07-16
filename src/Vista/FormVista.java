@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -915,6 +916,10 @@ public class FormVista extends javax.swing.JFrame {
 
     public JLabel getLblTotalPedidos() {
         return lblTotalPedidos;
+    }
+
+    public JTabbedPane getjTabbedPane1() {
+        return jTabbedPane1;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

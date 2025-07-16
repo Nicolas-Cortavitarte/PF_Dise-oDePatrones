@@ -77,6 +77,10 @@ public class ControladorVista {
             vista.getTxtRUC().setText("");
         });
 
+        if (vista.getjTabbedPane1().getTabCount() > 0) {
+            vista.getjTabbedPane1().setSelectedIndex(0);
+        }
+
         inicializarEventos();
     }
 
@@ -245,6 +249,8 @@ public class ControladorVista {
         resumen.append("Total: S/ ").append(pedidoActual.calcularTotal());
 
         vista.getTxtResumenPedido().setText(resumen.toString());
+        
+        actualizarIndicadores();
     }
 
     private void generarComprobante() {
@@ -254,7 +260,7 @@ public class ControladorVista {
         }
 
         String texto;
-        
+
         if (vista.getRbFactura().isSelected()) {
             String ruc = vista.getTxtRUC().getText().trim();
             if (ruc.isEmpty()) {
@@ -272,7 +278,7 @@ public class ControladorVista {
             JOptionPane.showMessageDialog(vista, "Seleccione Boleta o Factura.");
             return;
         }
-        
+
         vista.getTxtComprobanteGenerado().setText(texto);
     }
 
@@ -299,15 +305,18 @@ public class ControladorVista {
         List<Pedido> pedidos = gestorPedidos.getPedidos();
 
         int totalPedidos = pedidos.size();
-        int totalNormal = 0;
-        int totalExclusivo = 0;
         Map<String, Integer> contadorProductos = new HashMap<>();
+        double totalNormal = 0;
+        double totalExclusivo = 0;
 
         for (Pedido pedido : pedidos) {
-            if (pedido.getCliente().getDescuento() > 0.0) {
-                totalExclusivo++;
+            double total = pedido.calcularTotal();
+            boolean exclusivo = pedido.getCliente().getDescuento() > 0;
+
+            if (exclusivo) {
+                totalExclusivo += total;
             } else {
-                totalNormal++;
+                totalNormal += total;
             }
 
             for (LineaPedido linea : pedido.getLineas()) {
@@ -317,19 +326,20 @@ public class ControladorVista {
             }
         }
 
-        String productoMasVendido = "-";
-        int maxVendidos = 0;
+        String masPedido = "-";
+        int max = 0;
         for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
-            if (entry.getValue() > maxVendidos) {
-                maxVendidos = entry.getValue();
-                productoMasVendido = entry.getKey();
+            if (entry.getValue() > max) {
+                masPedido = entry.getKey();
+                max = entry.getValue();
             }
         }
 
-        vista.getLblTotalPedidos().setText(String.valueOf(totalPedidos));
-        vista.getLblTotalNormal().setText(String.valueOf(totalNormal));
-        vista.getLblTotalExclusivo().setText(String.valueOf(totalExclusivo));
-        vista.getLblProductoMasVendido().setText(productoMasVendido);
+        vista.getLblTotalPedidos().setText("Total de pedidos: " + totalPedidos);
+        vista.getLblProductoMasVendido().setText("Producto más pedido: \"" + masPedido + "\"");
+        vista.getLblTotalNormal().setText(String.format("Total vendido (clientes normales): S/%.2f", totalNormal));
+        vista.getLblTotalExclusivo().setText(String.format("Total vendido (clientes exclusivo): S/%.2f", totalExclusivo));
+
     }
 
     private void procesarPago() {
