@@ -718,37 +718,46 @@ public class FormVista extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnRealizarPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRealizarPagoActionPerformed
-
+        if (pedidoActual == null) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay pedido para realizar pago.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Modelo_pago.MetodoPago metodoPago = obtenerMetodoPagoSeleccionado();
+        double total = pedidoActual.calcularTotal();
+        metodoPago.procesarPago(total);
+        txtReciboPago.setText("Pago realizado por: " + metodoPago.getClass().getSimpleName() + "\nTotal: S/ " + String.format("%.2f", total));
+        lblResultadoPago.setText("Pago realizado correctamente.");
     }//GEN-LAST:event_btnRealizarPagoActionPerformed
 
     private void rbEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbEfectivoActionPerformed
-        // TODO add your handling code here:
+        // No se requiere acción específica al seleccionar efectivo
     }//GEN-LAST:event_rbEfectivoActionPerformed
 
     private void txtCodigoTarjetaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoTarjetaActionPerformed
-        // TODO add your handling code here:
+        // No se requiere acción específica al ingresar código de tarjeta
     }//GEN-LAST:event_txtCodigoTarjetaActionPerformed
 
     private void btnCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearClienteActionPerformed
-        // TODO add your handling code here:
-        String nombre = txtNombre.getText();
-        String correo = txtCorreo.getText();
-        String tipo = rbExclusivo.isSelected() ? "Exclusivo" : "Normal";
-
+        String nombre = txtNombre.getText().trim();
+        String correo = txtCorreo.getText().trim();
         if (nombre.isEmpty() || correo.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, completa los campos.");
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos del cliente.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
         Cliente cliente;
-        if (tipo.equals("Exclusivo")) {
-            cliente = new ClienteExclusivo(nombre, correo);
+        if (rbNormal.isSelected()) {
+            cliente = new Modelo_Cliente.NormalFactory().crearCliente(nombre, correo);
+        } else if (rbExclusivo.isSelected()) {
+            cliente = new Modelo_Cliente.ExclusivoFactory().crearCliente(nombre, correo);
         } else {
-            cliente = new ClienteNormal(nombre, correo);
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un tipo de cliente.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        DefaultTableModel model = (DefaultTableModel) tablaClientes.getModel();
-        model.addRow(new Object[]{nombre, correo, tipo});
+        clientes.add(cliente);
+        actualizarTablaClientes();
+        actualizarComboClientes();
+        limpiarCamposCliente();
+        JOptionPane.showMessageDialog(this, "Cliente creado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCrearClienteActionPerformed
 
     /**
