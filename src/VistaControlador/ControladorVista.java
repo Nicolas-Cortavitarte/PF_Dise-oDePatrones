@@ -3,9 +3,14 @@ package VistaControlador;
 import Modelo_Cliente.Cliente;
 import Modelo_Cliente.ClienteExclusivo;
 import Modelo_Cliente.ClienteNormal;
+import Modelo_Facturacion.BoletaAdapter;
+import Modelo_Facturacion.FacturaAdapter;
+import Modelo_Facturacion.Facturador;
+import Modelo_Facturacion.SistemaBoleta;
 import Modelo_Inventario.AlertarPorCantidadMinima;
 import Modelo_Inventario.GestorInventario;
 import Modelo_Pedido.GestorPedidos;
+import Modelo_Pedido.LineaPedido;
 import Modelo_Pedido.Pedido;
 import Modelo_Pedido.Producto;
 import Vista.FormVista;
@@ -39,6 +44,12 @@ public class ControladorVista {
         vista.getBtnAgregarProducto().addActionListener(e -> agregarProducto());
         vista.getCbbCliente().addActionListener(e -> iniciarPedido());
         vista.getBtnAgregarPedido().addActionListener(e -> agregarAlPedido());
+        vista.getBtnGenerarComprobante().addActionListener(e -> generarComprobante());
+        vista.getBtnConfirmarPedido().addActionListener(e -> confirmarPedido());
+        
+        
+        
+        
 
         inicializarEventos();
     }
@@ -192,6 +203,63 @@ public class ControladorVista {
             }
         }
         return null;
+    }
+
+    private void confirmarPedido() {
+        if (pedidoActual == null) {
+            return;
+        }
+
+        StringBuilder resumen = new StringBuilder();
+        resumen.append("Cliente: ").append(pedidoActual.getCliente().getNombre()).append("\n");
+        for (LineaPedido lp : pedidoActual.getLineas()) {
+            resumen.append(lp.getCantidad()).append(" x ").append(lp.getProducto().getNombre())
+                    .append(" = S/").append(lp.calcularSubtotal()).append("\n");
+        }
+        resumen.append("Total: S/ ").append(pedidoActual.calcularTotal());
+
+        vista.getTxtResumenPedido().setText(resumen.toString());
+    }
+
+    private void generarComprobante() {
+        if (pedidoActual == null) {
+            JOptionPane.showMessageDialog(vista, "No hay un pedido activo.");
+            return;
+        }
+
+        Facturador facturador;
+
+        if (vista.getRbFactura().isSelected()) {
+            String ruc = vista.getTxtRUC().getText().trim();
+            if (ruc.isEmpty()) {
+                JOptionPane.showMessageDialog(vista, "Debe ingresar un RUC para generar una factura.");
+                return;
+            }
+            facturador = new FacturaAdapter(ruc);
+
+        } else if (vista.getRbBoleta().isSelected()) {
+            facturador = new BoletaAdapter(new SistemaBoleta());
+
+        } else {
+            JOptionPane.showMessageDialog(vista, "Debe seleccionar Boleta o Factura.");
+            return;
+        }
+
+        String resumen = generarResumenTexto(pedidoActual);
+        vista.getTxtResumenPedido().setText(resumen);
+
+        facturador.generarComprobante(pedidoActual);
+    }
+
+    private String generarResumenTexto(Pedido pedido) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cliente: ").append(pedido.getCliente().getNombre()).append("\n");
+        for (LineaPedido lp : pedido.getLineas()) {
+            sb.append(lp.getCantidad()).append(" x ").append(lp.getProducto().getNombre())
+                    .append(" = S/. ").append(lp.calcularSubtotal()).append("\n");
+        }
+        sb.append("Total: S/. ").append(pedido.calcularTotal());
+        return sb.toString();
     }
 
     private void limpiarCamposProducto() {
