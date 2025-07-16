@@ -913,6 +913,14 @@ public class FormVista extends javax.swing.JFrame {
         return buttonGroup3;
     }
 
+    public JLabel getLblProductoMasVendido() {
+        return lblProductoMasVendido;
+    }
+
+    public JLabel getLblTotalPedidos() {
+        return lblTotalPedidos;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane ScrollPedidoActual;
     private javax.swing.JButton btnAgregarPedido;

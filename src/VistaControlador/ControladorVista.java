@@ -13,7 +13,12 @@ import Modelo_Pedido.GestorPedidos;
 import Modelo_Pedido.LineaPedido;
 import Modelo_Pedido.Pedido;
 import Modelo_Pedido.Producto;
+import Modelo_pago.MetodoPago;
+import Modelo_pago.PagoEfectivo;
+import Modelo_pago.PagoTarjeta;
+import Modelo_pago.PagoYape;
 import Vista.FormVista;
+import java.awt.Color;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -34,7 +39,14 @@ public class ControladorVista {
         this.vista = vista;
         this.listaClientes = new ArrayList<>();
         this.listaProductos = new ArrayList<>();
-        this.gestorInventario = new GestorInventario(new AlertarPorCantidadMinima()); // o tu implementación concreta
+        this.gestorInventario = new GestorInventario(new AlertarPorCantidadMinima());
+
+        this.gestorInventario.agregarObservador(mensaje -> {
+            vista.getLblAlertaActual().setText(mensaje);
+            vista.getLblAlertaActual().setForeground(Color.RED);
+            vista.getTxtHistorialAlertas().append(mensaje + "\n");
+        });
+
         this.gestorInventario.agregarObservador(msg -> {
             vista.getLblAlertaActual().setText(msg);
             vista.getTxtHistorialAlertas().append(msg + "\n");
@@ -46,10 +58,11 @@ public class ControladorVista {
         vista.getBtnAgregarPedido().addActionListener(e -> agregarAlPedido());
         vista.getBtnGenerarComprobante().addActionListener(e -> generarComprobante());
         vista.getBtnConfirmarPedido().addActionListener(e -> confirmarPedido());
-        
-        
-        
-        
+        vista.getBtnRealizarPago().addActionListener(e -> procesarPago());
+
+        vista.getRbTarjeta().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(true));
+        vista.getRbEfectivo().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(false));
+        vista.getRbYape().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(false));
 
         inicializarEventos();
     }
@@ -249,6 +262,8 @@ public class ControladorVista {
         vista.getTxtResumenPedido().setText(resumen);
 
         facturador.generarComprobante(pedidoActual);
+
+        actualizarIndicadores();
     }
 
     private String generarResumenTexto(Pedido pedido) {
@@ -268,5 +283,68 @@ public class ControladorVista {
         vista.getTxtPrecioProducto().setText("");
         vista.getTxtStockProducto().setText("");
         vista.getTxtStockMinimoProducto().setText("");
+    }
+
+    private void actualizarIndicadores() {
+        List<Pedido> pedidos = gestorPedidos.getPedidos();
+
+        int totalPedidos = pedidos.size();
+        int totalNormal = 0;
+        int totalExclusivo = 0;
+        Map<String, Integer> contadorProductos = new HashMap<>();
+
+        for (Pedido pedido : pedidos) {
+            if (pedido.getCliente().getDescuento() > 0.0) {
+                totalExclusivo++;
+            } else {
+                totalNormal++;
+            }
+
+            for (LineaPedido linea : pedido.getLineas()) {
+                String nombre = linea.getProducto().getNombre();
+                contadorProductos.put(nombre,
+                        contadorProductos.getOrDefault(nombre, 0) + linea.getCantidad());
+            }
+        }
+
+        String productoMasVendido = "-";
+        int maxVendidos = 0;
+        for (Map.Entry<String, Integer> entry : contadorProductos.entrySet()) {
+            if (entry.getValue() > maxVendidos) {
+                maxVendidos = entry.getValue();
+                productoMasVendido = entry.getKey();
+            }
+        }
+
+        vista.getLblTotalPedidos().setText(String.valueOf(totalPedidos));
+        vista.getLblTotalNormal().setText(String.valueOf(totalNormal));
+        vista.getLblTotalExclusivo().setText(String.valueOf(totalExclusivo));
+        vista.getLblProductoMasVendido().setText(productoMasVendido);
+    }
+
+    private void procesarPago() {
+        if (pedidoActual == null) {
+            JOptionPane.showMessageDialog(vista, "No hay un pedido activo.");
+            return;
+        }
+
+        double total = pedidoActual.calcularTotal();
+        MetodoPago metodo;
+        String resultado;
+
+        if (vista.getRbEfectivo().isSelected()) {
+            metodo = new PagoEfectivo();
+        } else if (vista.getRbTarjeta().isSelected()) {
+            metodo = new PagoTarjeta();
+        } else if (vista.getRbYape().isSelected()) {
+            metodo = new PagoYape();
+        } else {
+            JOptionPane.showMessageDialog(vista, "Seleccione un método de pago.");
+            return;
+        }
+
+        resultado = metodo.procesarPago(total);
+        vista.getLblResultadoPago().setText("✓ Pago exitoso");
+        vista.getTxtReciboPago().setText(resultado);
     }
 }
