@@ -38,7 +38,7 @@ public class FormVista extends javax.swing.JFrame {
      */
     public FormVista() {
         initComponents();
-
+      
         jTabbedPane1.setBackground(new Color(34, 86, 136));
         jTabbedPane1.setForeground(Color.WHITE);
 
@@ -155,7 +155,6 @@ public class FormVista extends javax.swing.JFrame {
         lblTotalNormal = new javax.swing.JLabel();
         lblTotalExclusivo = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jPanel18 = new javax.swing.JPanel();
         jPanel22 = new javax.swing.JPanel();
@@ -485,9 +484,6 @@ public class FormVista extends javax.swing.JFrame {
 
         jPanel20.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel5.add(jPanel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 228, 917, 339));
-
-        jLabel20.setText("Grafico: (AHI DECIA OPCIONAL) ");
-        jPanel5.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
         jTabbedPane1.addTab("Indicadores", jPanel5);
 
@@ -945,7 +941,6 @@ public class FormVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

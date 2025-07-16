@@ -7,6 +7,7 @@ import Modelo_Facturacion.BoletaAdapter;
 import Modelo_Facturacion.FacturaAdapter;
 import Modelo_Facturacion.Facturador;
 import Modelo_Facturacion.SistemaBoleta;
+import Modelo_Facturacion.SistemaFactura;
 import Modelo_Inventario.AlertarPorCantidadMinima;
 import Modelo_Inventario.GestorInventario;
 import Modelo_Pedido.GestorPedidos;
@@ -63,6 +64,18 @@ public class ControladorVista {
         vista.getRbTarjeta().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(true));
         vista.getRbEfectivo().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(false));
         vista.getRbYape().addActionListener(e -> vista.getTxtCodigoTarjeta().setEnabled(false));
+
+        vista.getTxtRUC().setEnabled(false);
+
+        vista.getRbFactura().addActionListener(e -> {
+            vista.getTxtRUC().setEnabled(true);
+            vista.getTxtRUC().setEditable(true);
+        });
+
+        vista.getRbBoleta().addActionListener(e -> {
+            vista.getTxtRUC().setEnabled(false);
+            vista.getTxtRUC().setText("");
+        });
 
         inicializarEventos();
     }
@@ -236,34 +249,31 @@ public class ControladorVista {
 
     private void generarComprobante() {
         if (pedidoActual == null) {
-            JOptionPane.showMessageDialog(vista, "No hay un pedido activo.");
+            JOptionPane.showMessageDialog(vista, "No hay pedido activo.");
             return;
         }
 
-        Facturador facturador;
-
+        String texto;
+        
         if (vista.getRbFactura().isSelected()) {
             String ruc = vista.getTxtRUC().getText().trim();
             if (ruc.isEmpty()) {
-                JOptionPane.showMessageDialog(vista, "Debe ingresar un RUC para generar una factura.");
+                JOptionPane.showMessageDialog(vista, "Debe ingresar un RUC.");
                 return;
             }
-            facturador = new FacturaAdapter(ruc);
+            SistemaFactura sistema = new SistemaFactura();
+            texto = sistema.emitirFactura(pedidoActual, ruc);
 
         } else if (vista.getRbBoleta().isSelected()) {
-            facturador = new BoletaAdapter(new SistemaBoleta());
+            SistemaBoleta sistema = new SistemaBoleta();
+            texto = sistema.emitirBoleta(pedidoActual);
 
         } else {
-            JOptionPane.showMessageDialog(vista, "Debe seleccionar Boleta o Factura.");
+            JOptionPane.showMessageDialog(vista, "Seleccione Boleta o Factura.");
             return;
         }
-
-        String resumen = generarResumenTexto(pedidoActual);
-        vista.getTxtResumenPedido().setText(resumen);
-
-        facturador.generarComprobante(pedidoActual);
-
-        actualizarIndicadores();
+        
+        vista.getTxtComprobanteGenerado().setText(texto);
     }
 
     private String generarResumenTexto(Pedido pedido) {

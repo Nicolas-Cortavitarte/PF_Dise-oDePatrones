@@ -4,17 +4,18 @@ import Modelo_Pedido.LineaPedido;
 import Modelo_Pedido.Pedido;
 
 public class SistemaBoleta {
-    public void emitirBoleta(Pedido pedido){
-        System.out.println("========= BOLETA DE VENTA =========");
-        System.out.println("Cliente: " + pedido.getCliente().getNombre());
-        System.out.println("Productos:");
 
+    public String emitirBoleta(Pedido pedido) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("========= BOLETA DE VENTA =========\n");
+        sb.append("Cliente: ").append(pedido.getCliente().getNombre()).append("\n");
+        sb.append("Productos:\n");
         for (LineaPedido linea : pedido.getLineas()) {
-            System.out.println("- " + linea.getProducto().getNombre() + " x" + linea.getCantidad()
-                    + ": S/. " + String.format("%.2f", linea.calcularSubtotal()));
+            sb.append("- ").append(linea.getProducto().getNombre()).append(" x").append(linea.getCantidad())
+                    .append(": S/. ").append(String.format("%.2f", linea.calcularSubtotal())).append("\n");
         }
-
-        System.out.println("Total a pagar: S/. " + String.format("%.2f", pedido.calcularTotal()));
-        System.out.println("Gracias por su compra.");
+        sb.append("Total a pagar: S/. ").append(String.format("%.2f", pedido.calcularTotal())).append("\n");
+        sb.append("Gracias por su compra.");
+        return sb.toString();
     }
 }

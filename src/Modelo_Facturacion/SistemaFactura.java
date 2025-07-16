@@ -4,18 +4,21 @@ import Modelo_Pedido.LineaPedido;
 import Modelo_Pedido.Pedido;
 
 public class SistemaFactura {
-    public void emitirFactura(Pedido pedido, String ruc){
-        System.out.println("========= FACTURA ELECTRÓNICA =========");
-        System.out.println("RUC: " + ruc);
-        System.out.println("Razón Social: " + pedido.getCliente().getNombre());
-        System.out.println("Detalle de Productos:");
 
+    public String emitirFactura(Pedido pedido, String ruc) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("========= FACTURA ELECTRÓNICA =========\n");
+        sb.append("RUC: ").append(ruc).append("\n");
+        sb.append("Razón Social: ").append(pedido.getCliente().getNombre()).append("\n");
+        sb.append("Detalle de Productos:\n");
+        
         for (LineaPedido linea : pedido.getLineas()) {
-            System.out.println("* " + linea.getProducto().getNombre() + " x" + linea.getCantidad()
-                    + ": S/. " + String.format("%.2f", linea.calcularSubtotal()));
+            sb.append("* ").append(linea.getProducto().getNombre()).append(" x").append(linea.getCantidad())
+                    .append(": S/. ").append(String.format("%.2f", linea.calcularSubtotal())).append("\n");
         }
 
-        System.out.println("Total facturado: S/. " + String.format("%.2f", pedido.calcularTotal()));
-        System.out.println("Factura emitida correctamente.");
+        sb.append("Total facturado: S/. ").append(String.format("%.2f", pedido.calcularTotal())).append("\n");
+        sb.append("Factura emitida correctamente.");
+        return sb.toString();
     }
 }
